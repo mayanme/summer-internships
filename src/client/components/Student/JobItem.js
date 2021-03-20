@@ -17,9 +17,13 @@
 */
 import React from "react";
 import { Button } from "reactstrap";
+import { userExists, addUser } from "client/components/Actions/userActions.js";
+import { addJobItem } from "client/components/Actions/jobActions.js";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+
+
 
 const JobItem = () => {
   return (
@@ -70,7 +74,7 @@ const JobItem = () => {
                           className="active"
                           color="primary"
                           href="#pablo"
-                          onClick={e => e.preventDefault()}
+                          onClick={() => addJobItem("Software Engineer Intern", "Microsoft", "Hello description", 6)}
                           role="button"
                           size="lg"
                         >

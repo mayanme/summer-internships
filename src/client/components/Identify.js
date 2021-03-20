@@ -94,6 +94,7 @@ const Identify = () => {
         </Row>
       </div>
       </Container> 
+      { console.log ("Hi") }
     </>
   );
 };
