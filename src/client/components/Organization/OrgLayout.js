@@ -23,6 +23,9 @@ import { Container } from "reactstrap";
 import AdminNavbar from "client/components/Navbars/AdminNavbar.js";
 import AdminFooter from "client/components/Footers/AdminFooter.js";
 import Sidebar from "client/components/Sidebar/Sidebar.js";
+import OrgFeed from "client/components/Organization/OrgFeed.js";
+import OrgProfile from "client/components/Organization/OrgProfile";
+import OrgJobs from "client/components/Organization/OrgJobs";
 
 import routes from "client/routes.js";
 
@@ -77,16 +80,17 @@ const Organization = (props) => {
         // }
         <h1 className="text-primary">Our Logo</h1>
       }
-        layout="org"
       />
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
           brandText={getBrandText(props.location.pathname)}
-          layout="org"
         />
         <Switch>
-          {getRoutes(routes)}
+          {/* {getRoutes(routes)} */}
+          <Route path="/org/org-profile" render={() => <OrgProfile loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
+          <Route path="/org/orgfeed" render={() => <OrgFeed loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
+          <Route path="/org/orgjobs" render={() => <OrgJobs loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
           <Redirect from="*" to="/" />
         </Switch>
         <Container fluid>

@@ -7,7 +7,15 @@ let userSchema = new Schema({
     email: String,
     username: String,
     password: String,
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    photo: String, // change this from string to file somehow
+    degree: String,
+    university: String,
+    skills: String, // change this from string to list of strings/numbers
+    city: String,
+    country: String,
+    aboutMe: String,
+    resume: String // change this from string to file somehow
 });
 
 module.exports = mongoose.model('User', userSchema);

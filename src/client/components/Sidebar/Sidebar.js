@@ -70,7 +70,7 @@ const Sidebar = (props) => {
   };
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
-    if (props.layout == "org")
+    if (props.layoutName == "org")
     {
       return [
         (<NavItem>
@@ -91,6 +91,16 @@ const Sidebar = (props) => {
           >
             <i className="ni ni-hat-3 text-primary mr-2" />
             My Profile
+          </NavLink>
+        </NavItem>),
+        (<NavItem>
+          <NavLink
+            to={"/org/orgjobs"}
+            tag={NavLinkRRD}
+            activeClassName="active"
+          >
+            <i className="ni ni-hat-3 text-primary mr-2" />
+            My Job Posts
           </NavLink>
         </NavItem>)
         ];

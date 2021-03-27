@@ -33,10 +33,10 @@ import {
 // core components
 import UserHeader from "client/components/Headers/UserHeader.js";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <>
-      <UserHeader />
+      <UserHeader  {...props} />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>

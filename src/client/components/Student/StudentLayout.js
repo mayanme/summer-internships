@@ -23,6 +23,8 @@ import { Container } from "reactstrap";
 import AdminNavbar from "client/components/Navbars/AdminNavbar.js";
 import AdminFooter from "client/components/Footers/AdminFooter.js";
 import Sidebar from "client/components/Sidebar/Sidebar.js";
+import StudentFeed from "client/components/Student/StudentFeed.js";
+import Profile from "client/components/Student/Profile.js";
 
 import routes from "client/routes.js";
 
@@ -77,16 +79,16 @@ const Student = (props) => {
         // }
         <h1 className="text-primary">Our Logo</h1>
       }
-        layout="student"
       />
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
           brandText={getBrandText(props.location.pathname)}
-          layout="student"
         />
         <Switch>
-          {getRoutes(routes)}
+          {/* {getRoutes(routes)} */}
+          <Route path="/student/user-profile" render={(props) => <Profile {...props} />} />
+          <Route path="/student/studentfeed" render={(props) => <StudentFeed {...props} />} />
           <Redirect from="*" to="/" />
         </Switch>
         <Container fluid>

@@ -37,12 +37,14 @@ import {
 
 const AdminNavbar = (props) => {
 
-  const [layout, setLayout] = useState(props.layout);
-  const [name, setName] = useState(props.loggedInUser.name);
+  const [layout, setLayout] = useState(props.layoutName);
+  const [name, setName] = useState(props.loginInfo.isStudent? 
+                                  props.loggedInUser.firstName + " " + props.loggedInUser.lastName
+                                  : props.loggedInUser.orgName);
 
   const getProfilePictureURL = () =>
   {
-    if (layout == "org")
+    if (!props.loginInfo.isStudent)
     {
       return (
         <img
@@ -108,19 +110,19 @@ const AdminNavbar = (props) => {
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem to="/student/user-profile" tag={Link}>
+                <DropdownItem to="/org/org-profile" tag={Link}>
                   <i className="ni ni-single-02" />
                   <span>My profile</span>
                 </DropdownItem>
-                <DropdownItem to="/student/user-profile" tag={Link}>
+                <DropdownItem to="/org/org-profile" tag={Link}>
                   <i className="ni ni-settings-gear-65" />
                   <span>Settings</span>
                 </DropdownItem>
-                <DropdownItem to="/student/user-profile" tag={Link}>
+                <DropdownItem to="/org/org-profile" tag={Link}>
                   <i className="ni ni-calendar-grid-58" />
                   <span>Activity</span>
                 </DropdownItem>
-                <DropdownItem to="/student/user-profile" tag={Link}>
+                <DropdownItem to="/org/org-profile" tag={Link}>
                   <i className="ni ni-support-16" />
                   <span>Support</span>
                 </DropdownItem>

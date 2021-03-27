@@ -32,22 +32,53 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // loggedInUser has to hold the same schema as in mongoDB user schema!!!
     this.state = {
+      // true if student, false if organization.
+      // this is used to know which fields exist in "loggedInUser"
+      // upon login - the function loginUserInState will set loggedInUser with the relevant fields.
+      loginInfo: {
+        isStudent: false,
+        isUserLoggedIn: false,
+      },
       loggedInUser: {
-        name: "Microsoft",
-        identity: "student"
+        orgName: "Microsoft",
+        firstName: "Mayan",
+        lastName: "Menahem",
+        username: "maymen",
+        email: "maymen@microsoft.com",
+        password: "123456",
+        photo: null,
+        isLoggedIn: false,
+        degree: "",
+        university: "",
+        skills: [],
+        city: "",
+        country: "",
+        aboutMe: "",
+        resume: ""
       }
     };
+  }
+
+  loginUserInState = (userDetails) => {
+    this.setState(
+      {
+        // assume userDetails holds the exact same schema as in loggedInUser!!!
+        // maybe loggedInUser starts as empty dict and then I assign it a value upon login
+        loggedInUser: userDetails
+      }
+    );
   }
 
   render() {
     return (
       <BrowserRouter>
       <Switch>
-        <Route path="/admin" render={(props) => <AdminLayout {...props} layoutName="admin" loggedInUser={this.state.loggedInUser} />} />
-        <Route path="/auth" render={(props) => <AuthLayout {...props} layoutName="auth" loggedInUser={this.state.loggedInUser} />} />
-        <Route path="/student" render={(props) => <StudentLayout {...props} layoutName="student" loggedInUser={this.state.loggedInUser} />} />
-        <Route path="/org" render={(props) => <OrgLayout {...props} layoutName="org" loggedInUser={this.state.loggedInUser} />} />
+        <Route path="/admin" render={(props) => <AdminLayout {...props} layoutName="admin" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
+        <Route path="/auth" render={(props) => <AuthLayout {...props} layoutName="auth" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
+        <Route path="/student" render={(props) => <StudentLayout {...props} layoutName="student" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
+        <Route path="/org" render={(props) => <OrgLayout {...props} layoutName="org" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
         <Redirect from="/" to="/auth/identify"/>
       </Switch>
     </BrowserRouter>

@@ -15,12 +15,52 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-const UserHeader = () => {
+
+const UserHeader = (props) => {
+
+  const [isStudent, setIsStudent] = useState(props.loginInfo.isStudent);
+  
+  const getNameToDisplay = () => {
+    if (isStudent)
+    {
+      return (
+        <h1 className="display-2 text-white">Hello {props.loggedInUser.firstName}</h1>
+      ) 
+    }
+    else
+    {
+      return (
+        <h1 className="display-2 text-white">Hello {props.loggedInUser.orgName}</h1>
+      ) 
+    }
+  }
+
+  const getIntroToDisplay = () => {
+    if (isStudent)
+    {
+      return (
+        <p className="text-white mt-0 mb-5">
+        This is your profile page. You can edit your personal information
+        and upload your resume.
+        </p>
+      ) 
+    }
+    else
+    {
+      return (
+        <p className="text-white mt-0 mb-5">
+        This is your profile page. You can edit your orgnization's information
+        and upload job posts.
+      </p>
+      ) 
+    }
+  }
+
   return (
     <>
       <div
@@ -41,11 +81,8 @@ const UserHeader = () => {
         <Container className="d-flex align-items-center" fluid>
           <Row>
             <Col lg="7" md="10">
-              <h1 className="display-2 text-white">Hello Mayan</h1>
-              <p className="text-white mt-0 mb-5">
-                This is your profile page. You can edit your personal information
-                and upload your resume.
-              </p>
+              {getNameToDisplay()}
+              {getIntroToDisplay()}
               <Button
                 color="info"
                 href="#pablo"

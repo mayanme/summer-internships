@@ -16,6 +16,7 @@
 
 */
 import OrgFeed from "client/components/Organization/OrgFeed.js";
+import OrgJobs from "client/components/Organization/OrgJobs.js";
 import OrgProfile from "client/components/Organization/OrgProfile.js";
 import StudentFeed from "client/components/Student/StudentFeed.js";
 import Profile from "client/components/Student/Profile.js";
@@ -43,6 +44,13 @@ var routes = [
     name: "Browse applications",
     icon: "ni ni-tv-2 text-primary",
     component: OrgFeed,
+    layout: "/org",
+  },
+  {
+    path: "/orgjobs",
+    name: "My job posts",
+    icon: "ni ni-tv-2 text-primary",
+    component: OrgJobs,
     layout: "/org",
   },
   {
