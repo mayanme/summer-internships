@@ -15,6 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import OrgFeed from "client/components/Organization/OrgFeed.js";
+import OrgProfile from "client/components/Organization/OrgProfile.js";
 import StudentFeed from "client/components/Student/StudentFeed.js";
 import Profile from "client/components/Student/Profile.js";
 import Register from "client/components/Register.js";
@@ -35,6 +37,20 @@ var routes = [
     icon: "ni ni-single-02 text-yellow",
     component: Profile,
     layout: "/student",
+  },
+  {
+    path: "/orgfeed",
+    name: "Browse applications",
+    icon: "ni ni-tv-2 text-primary",
+    component: OrgFeed,
+    layout: "/org",
+  },
+  {
+    path: "/org-profile",
+    name: "Organization Profile",
+    icon: "ni ni-single-02 text-yellow",
+    component: OrgProfile,
+    layout: "/org",
   },
   {
     path: "/identify",

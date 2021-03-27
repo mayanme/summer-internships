@@ -40,10 +40,10 @@ const JobItem = () => {
                           tag="h1"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Software Engineer Intern
+                          Mayan Menahem
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          Microsoft
+                          Computer Science
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -54,7 +54,7 @@ const JobItem = () => {
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/microsoft2.png")
+                              require("assets/img/theme/mayan-profile.jpg")
                                 .default
                             }
                           />
@@ -74,7 +74,7 @@ const JobItem = () => {
                           <span className="text-success mr-2">
                             <i className="fa fa-arrow-up" /> 85%
                           </span>{" "}
-                          <span className="text-nowrap">3 Months</span>
+                          {/* <span className="text-nowrap">3 Months</span> */}
                         </p>
                       </Col>
                       <Col className="col-auto">
@@ -87,7 +87,7 @@ const JobItem = () => {
                           role="button"
                           size="lg"
                         >
-                          Apply
+                          See Application
                         </Button>
                       </Col>
                     </Row>

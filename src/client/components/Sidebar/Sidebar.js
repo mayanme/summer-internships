@@ -70,21 +70,56 @@ const Sidebar = (props) => {
   };
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
-    return routes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
+    if (props.layout == "org")
+    {
+      return [
+        (<NavItem>
           <NavLink
-            to={prop.layout + prop.path}
+            to={"/org/orgfeed"}
             tag={NavLinkRRD}
-            onClick={closeCollapse}
             activeClassName="active"
           >
-            <i className={prop.icon} />
-            {prop.name}
+            <i className="ni ni-hat-3 text-primary mr-2" />
+            Browse applications
           </NavLink>
-        </NavItem>
-      );
-    });
+        </NavItem>),
+        (<NavItem>
+          <NavLink
+            to={"/org/org-profile"}
+            tag={NavLinkRRD}
+            activeClassName="active"
+          >
+            <i className="ni ni-hat-3 text-primary mr-2" />
+            My Profile
+          </NavLink>
+        </NavItem>)
+        ];
+    }
+    else 
+    {
+      return [
+        (<NavItem>
+          <NavLink
+            to={"/student/studentfeed"}
+            tag={NavLinkRRD}
+            activeClassName="active"
+          >
+            <i className="ni ni-hat-3 text-primary mr-2" />
+            Browse Jobs
+          </NavLink>
+        </NavItem>),
+        (<NavItem>
+          <NavLink
+            to={"/student/user-profile"}
+            tag={NavLinkRRD}
+            activeClassName="active"
+          >
+            <i className="ni ni-hat-3 text-primary mr-2" />
+            My Profile
+          </NavLink>
+        </NavItem>)
+        ];
+    }
   };
 
   const { bgColor, routes, logo } = props;
@@ -238,26 +273,7 @@ const Sidebar = (props) => {
           </Form>
           {/* Navigation */}
           <Nav navbar>
-              <NavItem>
-                <NavLink
-                  to={"/student/studentfeed"}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-hat-3 text-primary mr-2" />
-                  Browse Jobs
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  to={"/student/user-profile"}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-hat-3 text-primary mr-2" />
-                  My Profile
-                </NavLink>
-              </NavItem>
+            {createLinks(routes)}
             </Nav>
 
         </Collapse>
@@ -284,6 +300,8 @@ Sidebar.propTypes = {
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
     imgAlt: PropTypes.string.isRequired,
+    // layout
+    layout: PropTypes.string,
   }),
 };
 

@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -36,6 +36,38 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
+
+  const [layout, setLayout] = useState(props.layout);
+  const [name, setName] = useState(props.loggedInUser.name);
+
+  const getProfilePictureURL = () =>
+  {
+    if (layout == "org")
+    {
+      return (
+        <img
+        alt="..."
+        src={
+          require("assets/img/theme/microsoft2.png")
+            .default
+        }
+      />
+      )
+    }
+    else
+    {
+      return (
+        <img
+        alt="..."
+        src={
+          require("assets/img/theme/mayan-profile.jpg")
+            .default
+        }
+      />
+      )
+    }
+  };
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -63,17 +95,11 @@ const AdminNavbar = (props) => {
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
-                    <img
-                      alt="..."
-                      src={
-                        require("assets/img/theme/mayan-profile.jpg")
-                          .default
-                      }
-                    />
+                   {getProfilePictureURL()}
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Mayan Menahem
+                      {name}
                     </span>
                   </Media>
                 </Media>

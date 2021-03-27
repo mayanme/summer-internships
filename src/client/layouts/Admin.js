@@ -77,11 +77,14 @@ const Admin = (props) => {
         // }
         <h1 className="text-primary">Our Logo</h1>
       }
+        layout="admin"
       />
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
           brandText={getBrandText(props.location.pathname)}
+          layout={props.layoutName}
+          loggedInUser={props.loggedInUser}
         />
         <Switch>
           {getRoutes(routes)}

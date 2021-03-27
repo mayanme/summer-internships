@@ -26,15 +26,36 @@ import "assets/scss/argon-dashboard-react.scss";
 import AdminLayout from "client/layouts/Admin.js";
 import AuthLayout from "client/layouts/Auth.js";
 import StudentLayout from "client/components/Student/StudentLayout.js";
+import OrgLayout from "client/components/Organization/OrgLayout.js";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedInUser: {
+        name: "Microsoft",
+        identity: "student"
+      }
+    };
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+      <Switch>
+        <Route path="/admin" render={(props) => <AdminLayout {...props} layoutName="admin" loggedInUser={this.state.loggedInUser} />} />
+        <Route path="/auth" render={(props) => <AuthLayout {...props} layoutName="auth" loggedInUser={this.state.loggedInUser} />} />
+        <Route path="/student" render={(props) => <StudentLayout {...props} layoutName="student" loggedInUser={this.state.loggedInUser} />} />
+        <Route path="/org" render={(props) => <OrgLayout {...props} layoutName="org" loggedInUser={this.state.loggedInUser} />} />
+        <Redirect from="/" to="/auth/identify"/>
+      </Switch>
+    </BrowserRouter>
+    );
+  }
+}
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-      <Route path="/student" render={(props) => <StudentLayout {...props} />} />
-      <Redirect from="/" to="/auth/identify"/>
-    </Switch>
-  </BrowserRouter>,
+ <App/>,
   document.getElementById("root")
 );

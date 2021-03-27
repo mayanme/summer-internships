@@ -26,7 +26,7 @@ import Sidebar from "client/components/Sidebar/Sidebar.js";
 
 import routes from "client/routes.js";
 
-const Student = (props) => {
+const Organization = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
@@ -38,7 +38,7 @@ const Student = (props) => {
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/student") {
+      if (prop.layout === "/org") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -77,13 +77,13 @@ const Student = (props) => {
         // }
         <h1 className="text-primary">Our Logo</h1>
       }
-        layout="student"
+        layout="org"
       />
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
           brandText={getBrandText(props.location.pathname)}
-          layout="student"
+          layout="org"
         />
         <Switch>
           {getRoutes(routes)}
@@ -97,7 +97,7 @@ const Student = (props) => {
   );
 };
 
-export default Student;
+export default Organization;
 
 
 {/* <Sidebar

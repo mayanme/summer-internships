@@ -19,14 +19,16 @@ module.exports = (app) => {
 
     app.post('/api/adduser', async function (req, res) {  
       console.log("req.body is: ", req.body);
-      const {firstName,lastName,username,password} = req.body;
+      const {firstName,lastName,email,username,password,isLoggedIn} = req.body;
       console.log("starting add user, username: ", username);
       try {
         const addUser = new UserSchema({
             firstName,
             lastName,
+            email,
             username,
-            password }
+            password,
+            isLoggedIn }
             )
         await addUser.save();
         res.json({success: true});
@@ -35,6 +37,27 @@ module.exports = (app) => {
       }
       });
 
-
+      app.get('/api/login', async function (req, res) {  
+        console.log("req.body is: ", req.body);
+        const {email,password} = req.body;
+        console.log("starting login user, email: ", email);
+        const user = await UserSchema.findOne({email:email});
+        if (!user)
+        {
+          console.log("server/api/login: User not found");
+        }
+        else
+        {
+          try {
+            user.isLoggedIn = true;
+            await user.save()
+          }
+          catch {
+            res.json({success: false}); 
+            return;
+          }
+        }
+        res.json({success: true});
+        });
 
 }
