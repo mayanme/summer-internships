@@ -10,7 +10,8 @@ const path = require('path');
 
 
 const config = {
-    mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/maymen',
+    // mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/maymen',
+    mongoURL: "mongodb+srv://maymen:Mm23071994@mayancluster.zuclv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     port: 8080
   };
 
@@ -19,12 +20,6 @@ mongoose.Promise = global.Promise;
 // MongoDB Connection
 if (process.env.NODE_ENV !== 'test') {
   mongoose.connect(config.mongoURL, { useNewUrlParser: true ,useUnifiedTopology: true}, (error) => {
-    // const jobs = require('./jobs.json');
-    // JobItemSchema.collection.deleteMany({})
-    //   .then(result => JobItemSchema.collection.insertMany(jobs));
-    // const users = require('./users.json');
-    // UserSchema.collection.deleteMany({})
-    //   .then(result => UserSchema.collection.insertMany(users));
     if (error) {
       console.error('Please make sure Mongodb is installed and running!');
       throw error;

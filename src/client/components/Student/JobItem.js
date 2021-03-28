@@ -83,7 +83,7 @@ const JobItem = () => {
                           className="active"
                           color="primary"
                           href="#pablo"
-                          // onClick={() => addJobItem("Software Engineer Intern", "Microsoft", "Hello description", 6)}
+                          onClick={() => addJobItem("Software Engineer Intern 2", "Microsoft", "Hello description", 6)}
                           role="button"
                           size="lg"
                         >
