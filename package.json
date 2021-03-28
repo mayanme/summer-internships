@@ -34,7 +34,7 @@
     "minify:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
     "map:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true",
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss",
-    "heroku-postbuild": "cd src/client && npm install && npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "server": "node src/server/server.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
