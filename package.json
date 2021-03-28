@@ -1,11 +1,11 @@
 {
-  "name": "argon-dashboard-react",
+  "name": "summer-internships",
   "version": "1.2.0",
-  "description": "React version of Argon Dashboard by Creative Tim",
+  "description": "Summer Internships website",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/argon-dashboard-react.git"
+    "url": "github:mayanme/summer-internships"
   },
   "keywords": [
     "react",
@@ -20,13 +20,12 @@
   "author": "Creative Tim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
+    "email": "mayanm152@gmail.com"
   },
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
+  "homepage": ".",
   "proxy": "http://localhost:8080",
   "scripts": {
-    "start-client": "react-scripts start",
-    "start": "npm run dev",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -37,11 +36,11 @@
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "server": "node src/server/server.js",
-    "client": "npm start-client",
+    "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
-    "node": "10.21.0"
+    "node": "14.16.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,6 +61,7 @@
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.6",
     "moment": "2.29.1",
+    "mongoose": "^5.12.2",
     "node-sass": "4.14.1",
     "node-sass-package-importer": "5.3.2",
     "nouislider": "14.6.3",
