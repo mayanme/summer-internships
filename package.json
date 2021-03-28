@@ -37,7 +37,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "node src/server/server.js",
     "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "npx run concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
     "node": "14.16.0"
@@ -58,7 +58,6 @@
     "bootstrap": "4.6.0",
     "chart.js": "2.9.4",
     "classnames": "2.2.6",
-    "concurrently": "^6.0.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.6",
     "moment": "2.29.1",
@@ -77,6 +76,7 @@
     "reactstrap": "8.9.0"
   },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8"
   },
