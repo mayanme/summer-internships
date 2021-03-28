@@ -12,7 +12,7 @@ const path = require('path');
 const config = {
     // mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/maymen',
     mongoURL: "mongodb+srv://maymen:Mm23071994@mayancluster.zuclv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    port: 8080
+    port: process.env.PORT || 8080
   };
 
   //setup database
@@ -52,7 +52,7 @@ app.use(function (err, msg, req, res, next) {
   res.status(500).json({error: err});
 });
 
-app.listen(8080,
+app.listen(config.port,
     () => console.log(`Listening on port 8080!`));
 
 app.get('/api', (req,res)=> {
