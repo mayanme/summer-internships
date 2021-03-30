@@ -16,7 +16,8 @@
 
 */
 import React from "react";
-import { userExists, addUser } from "components/Actions/userActions.js";
+import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
+import { Redirect } from "react-router-dom";
 
 
 // reactstrap components
@@ -38,7 +39,11 @@ import {
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {nameValue: '', emailValue: '', passwordValue: ''};
+    this.state = {
+      nameValue: '', 
+      emailValue: '', 
+      passwordValue: '',
+      isLoggedIn: false};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,13 +66,23 @@ class Register extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    // alert('A name was submitted: ' + this.state.value);
     addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
+    var success = logUserIn(this.state.emailValue, this.state.passwordValue);
     // redirect to profile
+    this.setState({isLoggedIn: true});
   }
 
   render() {
+    if (this.state.isLoggedIn)
+    {
+      return <Redirect from="/auth/identify" to="/student/studentfeed"/>
+      // later add also:
+      // return <Redirect from="/auth/identify" to="/org/orgfeed"/>
+
+    }
+    
+    // else, render the register page
     return (
       <>
         <Col lg="6" md="8">

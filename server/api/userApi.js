@@ -28,7 +28,15 @@ module.exports = (app) => {
             email,
             username,
             password,
-            isLoggedIn }
+            isLoggedIn, 
+            "photo":"photo", 
+            "degree":"degree", 
+            "university":"university", 
+            "skills":"skills", 
+            "city":"city", 
+            "country":"country", 
+            "aboutMe":"aboutMe", 
+            "resume":"resume"}
             )
         await addUser.save();
         res.json({success: true});
@@ -37,7 +45,7 @@ module.exports = (app) => {
       }
       });
 
-      app.get('/api/login', async function (req, res) {  
+      app.post('/api/login', async function (req, res) {  
         console.log("req.body is: ", req.body);
         const {email,password} = req.body;
         console.log("starting login user, email: ", email);

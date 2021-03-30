@@ -3,7 +3,8 @@ export function userExists() {
     // GET request using fetch with set headers
     const headers = { 'Content-Type': 'application/json'}
     fetch('/api/userexists?username=maymen', { headers })
-        .then(response => console.log("res is: ", response.json()))
+        .then(response => 
+            console.log("res is: ", response.json()))
         // .then(data => this.setState({ totalReactPackages: data.total }));
         .catch(error => console.log("error in actions -> userexists"));
   }
@@ -32,7 +33,7 @@ export function addUser(nameP, lastnameP, emailP, usernameP, passwordP)
 
 export function logUserIn(emailP, passwordP)
 {
-    // console.log("sending message to server - add user: ", nameP);
+    console.log("sending message to server - login user: ", emailP, passwordP);
     // GET request using fetch with set headers
     if (emailP == null || passwordP == null)
     {
@@ -48,7 +49,10 @@ export function logUserIn(emailP, passwordP)
                 "password": passwordP})
     }
     )
-        .then(response => console.log("res is: ", response.json()))
+        .then(response => 
+            //console.log("res is: ", response.json())
+            { return response }
+            )
         // .then(data => this.setState({ totalReactPackages: data.total }));
         .catch(error => console.log("error in actions -> login user"));
 }

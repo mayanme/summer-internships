@@ -16,7 +16,8 @@
 
 */
 import React from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import { NavLink as NavLinkRRD, Link, Redirect, Route } from "react-router-dom";
+import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
 
 
 // reactstrap components
@@ -43,7 +44,10 @@ import {
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {emailValue: '', passwordValue: ''};
+    this.state = {
+      emailValue: '', 
+      passwordValue: '',
+      isLoggedIn: false};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -62,13 +66,25 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-    // addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.passwordValue);
+    // alert('An email was submitted: ' + this.state.emailValue);
+    console.log("Login.js: logging in");
+    var success = logUserIn(this.state.emailValue, this.state.passwordValue);
     // redirect to profile
+    console.log("success:", success);
+    this.setState({isLoggedIn: true});
   }
 
   render() {
+    if (this.state.isLoggedIn)
+    {
+      return <Redirect from="/auth/identify" to="/student/studentfeed"/>
+      // later add also:
+      // return <Redirect from="/auth/identify" to="/org/orgfeed"/>
+
+    }
+    
+    // else, render the login page
+
     return (
       <>
         <Col lg="5" md="7">
@@ -145,10 +161,10 @@ class Login extends React.Component {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      id="email-login-id"
-                      placeholder="Email"
+                      id="password-login-id"
+                      placeholder="Password"
                       onChange={this.handleChange} 
-                      value={this.state.emailValue}
+                      value={this.state.passwordValue}
                       placeholder="Password"
                       type="password"
                       autoComplete="new-password"
@@ -169,7 +185,11 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button 
+                    className="my-4" 
+                    color="primary"
+                    onClick={this.handleSubmit}
+                    type="button">
                     Sign in
                   </Button>
                 </div>
