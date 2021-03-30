@@ -23,14 +23,17 @@
     "email": "mayanm152@gmail.com"
   },
   "homepage": ".",
+  "proxy": "http://localhost:8080",
   "scripts": {
-    "install-all": "concurrently \"npm install\" \"cd client && npm install\"",
-    "client": "cd client && npm start",
-    "server": "nodemon server/server.js",
-    "dev": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
-    "build": "cd client && npm build",
-    "start": "node server/server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css",
+    "minify:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
+    "map:scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true",
+    "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss"
   },
   "engines": {
     "node": "14.16.0"
@@ -58,7 +61,6 @@
     "mongoose": "^5.12.2",
     "node-sass": "4.14.1",
     "node-sass-package-importer": "5.3.2",
-    "nodemon": "^2.0.7",
     "nouislider": "14.6.3",
     "react": "17.0.1",
     "react-chartjs-2": "2.11.1",
