@@ -23,21 +23,21 @@ import { Button, Container, Row, Col } from "reactstrap";
 
 const UserHeader = (props) => {
 
-  const [isStudent, setIsStudent] = useState(true /* props.loginInfo.isStudent */);
+  const [isStudent, setIsStudent] = useState(props.loginInfo.isStudent);
   
   const getNameToDisplay = () => {
     if (isStudent)
     {
       return (
-        // <h1 className="display-2 text-white">Hello {props.loggedInUser.firstName}</h1>
-        <h1 className="display-2 text-white">Hello Mayan</h1>
+        <h1 className="display-2 text-white">Hello {props.loggedInUser.firstName}</h1>
+        // <h1 className="display-2 text-white">Hello Mayan</h1>
       ) 
     }
     else
     {
       return (
-        // <h1 className="display-2 text-white">Hello {props.loggedInUser.orgName}</h1>
-        <h1 className="display-2 text-white">Hello Microsoft</h1>
+        <h1 className="display-2 text-white">Hello {props.loggedInUser.orgName}</h1>
+        // <h1 className="display-2 text-white">Hello Microsoft</h1>
       ) 
     }
   }

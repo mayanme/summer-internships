@@ -25,7 +25,7 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 
 
-const JobItem = () => {
+const AppliedItem = () => {
   return (
     <>
       <div className="job-item pb-5 pt-5 pt-md-5">
@@ -100,7 +100,7 @@ const JobItem = () => {
   );
 };
 
-export default JobItem;
+export default AppliedItem;
 
 
 // <Col lg="6" xl="3">

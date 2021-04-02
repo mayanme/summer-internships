@@ -2,6 +2,13 @@ const JobItemSchema = require('../model/jobItem');
 
 
 module.exports = (app) => {
+    app.get('/api/getallorgjobs', async function (req, res) {  
+        const {companyName} = req.query;
+        console.log("starting get all jobs, company: ", companyName);
+        const allJobs = await JobItemSchema.find({company:companyName});
+        res.status(200).json({allJobs: allJobs});
+        });
+
     app.post('/api/addjobitem', async function (req, res) {  
         console.log("req.body is: ", req.body);
         const {name, company, description, duration} = req.body;

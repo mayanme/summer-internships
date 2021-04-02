@@ -88,9 +88,21 @@ const Organization = (props) => {
         />
         <Switch>
           {/* {getRoutes(routes)} */}
-          <Route path="/org/org-profile" render={() => <OrgProfile loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
-          <Route path="/org/orgfeed" render={() => <OrgFeed loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
-          <Route path="/org/orgjobs" render={() => <OrgJobs loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />} />
+          <Route 
+            path="/org/org-profile" 
+            render={() => <OrgProfile 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser} />} />
+          <Route 
+            path="/org/orgfeed" 
+            render={() => <OrgFeed 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser} />} />
+          <Route 
+            path="/org/orgjobs" 
+            render={() => <OrgJobs 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser} />} />
           <Redirect from="*" to="/" />
         </Switch>
         <Container fluid>

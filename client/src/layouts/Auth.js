@@ -23,6 +23,9 @@ import { Container, Row, Col } from "reactstrap";
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
+import Identify from "components/Identify.js";
+import Login from "components/Login.js";
+import Register from "components/Register.js";
 
 import routes from "routes.js";
 
@@ -68,8 +71,29 @@ const Auth = (props) => {
         <Container className="mt--10 pb-5">
           <Row className="justify-content-center">
             <Switch>
-              {getRoutes(routes)}
-              <Redirect from="*" to="/auth/identify" />
+              {/* {getRoutes(routes)} */}
+              <Route 
+                path="/auth/identify" 
+                render={() => <Identify 
+                                loggedInUser={props.loggedInUser} 
+                                loginInfo={props.loginInfo}
+                                setStudentOrOrg={props.setStudentOrOrg}
+                                setLoggedIn={props.setLoggedIn} />} />
+              <Route 
+                path="/auth/login" 
+                render={() => <Login 
+                                loggedInUser={props.loggedInUser} 
+                                loginInfo={props.loginInfo}
+                                setStudentOrOrg={props.setStudentOrOrg}
+                                setLoggedIn={props.setLoggedIn} />} />
+              <Route 
+                path="/auth/register" 
+                render={() => <Register 
+                                loggedInUser={props.loggedInUser} 
+                                loginInfo={props.loginInfo}
+                                setStudentOrOrg={props.setStudentOrOrg}
+                                setLoggedIn={props.setLoggedIn} />} />
+              <Redirect from="*" to="/" />
             </Switch>
           </Row>
         </Container>

@@ -18,6 +18,8 @@
 import React from "react";
 import { NavLink as NavLinkRRD, Link, Redirect, Route } from "react-router-dom";
 import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
+import { orgExists, addOrg, logOrgIn } from "components/Actions/orgActions.js";
+
 
 
 // reactstrap components
@@ -46,8 +48,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       emailValue: '', 
-      passwordValue: '',
-      isLoggedIn: false};
+      passwordValue: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,19 +69,34 @@ class Login extends React.Component {
   handleSubmit(event) {
     // alert('An email was submitted: ' + this.state.emailValue);
     console.log("Login.js: logging in");
-    var success = logUserIn(this.state.emailValue, this.state.passwordValue);
-    // redirect to profile
+    var success;
+
+    if (this.props.loginInfo.isStudent)
+    {
+      success = logUserIn(this.state.emailValue, this.state.passwordValue);
+    }
+    else
+    {
+      success = logOrgIn(this.state.emailValue, this.state.passwordValue);
+    }
+
+    // set as logged in
     console.log("success:", success);
-    this.setState({isLoggedIn: true});
+    this.props.setLoggedIn(true);
   }
 
   render() {
-    if (this.state.isLoggedIn)
+    if (this.props.loginInfo.isLoggedIn)
     {
-      return <Redirect from="/auth/identify" to="/student/studentfeed"/>
-      // later add also:
-      // return <Redirect from="/auth/identify" to="/org/orgfeed"/>
-
+      if (this.props.loginInfo.isStudent)
+      {
+        return <Redirect from="/auth/identify" to="/student/studentfeed"/>
+      }
+      else
+      {
+        // is org
+        return <Redirect from="/auth/identify" to="/org/orgfeed"/>
+      }
     }
     
     // else, render the login page

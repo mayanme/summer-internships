@@ -41,7 +41,8 @@ import {
   Nav,
 } from "reactstrap";
 
-const Identify = () => {
+const Identify = (props) => {
+
   return (
     <>     
     <Container>
@@ -67,7 +68,7 @@ const Identify = () => {
                   tag={NavLinkRRD}
                   activeClassName="active"
                 >
-                  <Button>
+                  <Button onClick={() => props.setStudentOrOrg(true)}>
                     <i className="ni ni-hat-3 text-primary mr-2" />
                     Student
                   </Button>
@@ -83,7 +84,7 @@ const Identify = () => {
                   tag={NavLinkRRD}
                   activeClassName="active"
                 >
-                  <Button>
+                  <Button onClick={() => props.setStudentOrOrg(false)}>
                     <i className="ni ni-world-2 text-primary mr-2" />
                     Organization
                   </Button>

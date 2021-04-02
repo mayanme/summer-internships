@@ -36,7 +36,9 @@ import UserHeader from "components/Headers/UserHeader.js";
 const OrgProfile = (props) => {
   return (
     <>
-      <UserHeader {...props} />
+      <UserHeader 
+        loginInfo={props.loginInfo} 
+        loggedInUser={props.loggedInUser} />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>

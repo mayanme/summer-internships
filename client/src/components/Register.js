@@ -17,6 +17,7 @@
 */
 import React from "react";
 import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
+import { orgExists, addOrg, logOrgIn } from "components/Actions/orgActions.js";
 import { Redirect } from "react-router-dom";
 
 
@@ -42,8 +43,7 @@ class Register extends React.Component {
     this.state = {
       nameValue: '', 
       emailValue: '', 
-      passwordValue: '',
-      isLoggedIn: false};
+      passwordValue: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -67,19 +67,34 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.value);
-    addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
-    var success = logUserIn(this.state.emailValue, this.state.passwordValue);
-    // redirect to profile
-    this.setState({isLoggedIn: true});
+    var success;
+    if (this.props.loginInfo.isStudent)
+    {
+      addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
+      success = logUserIn(this.state.emailValue, this.state.passwordValue);
+    }
+    else
+    {
+      // add Org + log org in
+      addOrg(this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
+      success = logOrgIn(this.state.emailValue, this.state.passwordValue);
+    }
+    // set logged in
+    this.props.setLoggedIn(true);
   }
 
   render() {
-    if (this.state.isLoggedIn)
+    if (this.props.loginInfo.isLoggedIn)
     {
-      return <Redirect from="/auth/identify" to="/student/studentfeed"/>
-      // later add also:
-      // return <Redirect from="/auth/identify" to="/org/orgfeed"/>
-
+      if (this.props.loginInfo.isStudent)
+      {
+        return <Redirect from="/auth/identify" to="/student/studentfeed"/>
+      }
+      else
+      {
+        // is org
+        return <Redirect from="/auth/identify" to="/org/orgfeed"/>
+      }
     }
     
     // else, render the register page

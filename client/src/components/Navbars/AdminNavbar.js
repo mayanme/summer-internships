@@ -38,7 +38,7 @@ import {
 const AdminNavbar = (props) => {
 
   const [layout, setLayout] = useState(props.layoutName);
-  const [name, setName] = useState(props.loginInfo.isStudent? 
+  const [name, setName] = useState(props.loginInfo.isStudent ? 
                                   props.loggedInUser.firstName + " " + props.loggedInUser.lastName
                                   : props.loggedInUser.orgName);
 

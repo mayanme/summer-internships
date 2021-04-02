@@ -36,7 +36,7 @@ import UserHeader from "components/Headers/UserHeader.js";
 const Profile = (props) => {
   return (
     <>
-      <UserHeader  {...props} />
+      <UserHeader loginInfo={props.loginInfo} loggedInUser={props.loggedInUser} />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
@@ -212,7 +212,7 @@ const Profile = (props) => {
                           />
                         </FormGroup>
                       </Col>
-                      <Col lg="6">
+                      {/* <Col lg="6">
                         <FormGroup>
                           <label
                             className="form-control-label"
@@ -228,7 +228,7 @@ const Profile = (props) => {
                             type="text"
                           />
                         </FormGroup>
-                      </Col>
+                      </Col> */}
                     </Row>
                   </div>
                   <hr className="my-4" />

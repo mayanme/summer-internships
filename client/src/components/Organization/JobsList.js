@@ -47,10 +47,9 @@ import {
 } from "views/examples/variables/charts.js";
 
 import Header from "components/Headers/Header.js";
-import AppliedItem from "components/Organization/AppliedItem";
 import JobItem from "components/Organization/JobItem";
 
-const AppliedList = (props) => {
+const JobsList = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
@@ -65,7 +64,7 @@ const AppliedList = (props) => {
   };
   return (
     <>
-    <div className="bg-gradient-default pt-6">
+    <div className="bg-gradient-default pt-4">
       <JobItem />
       <JobItem />
       <JobItem />
@@ -75,7 +74,7 @@ const AppliedList = (props) => {
   );
 };
 
-export default AppliedList;
+export default JobsList;
 
 
 // {/* Page content */}

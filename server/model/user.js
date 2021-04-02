@@ -9,9 +9,11 @@ let userSchema = new Schema({
     password: String,
     isLoggedIn: Boolean,
     photo: String, // change this from string to file somehow
+    // photo:  {data:Buffer , content:String},
     degree: String,
     university: String,
     skills: String, // change this from string to list of strings/numbers
+    // skills: [String],
     city: String,
     country: String,
     aboutMe: String,

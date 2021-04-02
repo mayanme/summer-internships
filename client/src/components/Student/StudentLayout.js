@@ -87,8 +87,16 @@ const Student = (props) => {
         />
         <Switch>
           {/* {getRoutes(routes)} */}
-          <Route path="/student/user-profile" render={(props) => <Profile {...props} />} />
-          <Route path="/student/studentfeed" render={(props) => <StudentFeed {...props} />} />
+          <Route 
+            path="/student/user-profile" 
+            render={() => <Profile 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser} />} />
+          <Route 
+            path="/student/studentfeed" 
+            render={() => <StudentFeed 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser} />} />
           <Redirect from="*" to="/" />
         </Switch>
         <Container fluid>

@@ -71,14 +71,58 @@ class App extends React.Component {
     );
   }
 
+  setStudentOrOrg = (isStudentValue) => {
+    this.setState({ 
+      loginInfo: { 
+        ...this.state.loginInfo, 
+        isStudent: isStudentValue
+      }
+    })
+  }
+
+  setLoggedIn = (isLogged) => {
+    this.setState({
+      loginInfo: {
+        ...this.state.loginInfo,
+        isLoggedIn: isLogged
+      }
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
       <Switch>
-        <Route path="/admin" render={(props) => <AdminLayout {...props} layoutName="admin" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
-        <Route path="/auth" render={(props) => <AuthLayout {...props} layoutName="auth" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
-        <Route path="/student" render={(props) => <StudentLayout {...props} layoutName="student" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
-        <Route path="/org" render={(props) => <OrgLayout {...props} layoutName="org" loggedInUser={this.state.loggedInUser} loginInfo={this.state.loginInfo} />} />
+        <Route 
+          path="/admin" 
+          render={(props) => <AdminLayout 
+                                {...props} 
+                                layoutName="admin" 
+                                loggedInUser={this.state.loggedInUser} 
+                                loginInfo={this.state.loginInfo} />} />
+        <Route 
+          path="/auth" 
+          render={(props) => <AuthLayout 
+                                {...props} 
+                                layoutName="auth" 
+                                loggedInUser={this.state.loggedInUser} 
+                                loginInfo={this.state.loginInfo}
+                                setStudentOrOrg={this.setStudentOrOrg}
+                                setLoggedIn={this.setLoggedIn} />} />
+        <Route 
+          path="/student" 
+          render={(props) => <StudentLayout 
+                                {...props} 
+                                layoutName="student" 
+                                loggedInUser={this.state.loggedInUser} 
+                                loginInfo={this.state.loginInfo} />} />
+        <Route 
+          path="/org" 
+          render={(props) => <OrgLayout 
+                                {...props} 
+                                layoutName="org" 
+                                loggedInUser={this.state.loggedInUser} 
+                                loginInfo={this.state.loginInfo} />} />
         <Redirect from="/" to="/auth/identify"/>
       </Switch>
     </BrowserRouter>
