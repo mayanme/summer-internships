@@ -124,7 +124,7 @@ class Login extends React.Component {
                           .default
                       }
                     /> */}
-                    <i className="fab fa-facebook" />
+                    <i className="fab fa-facebook fa-lg" />
                   </span>
                   <span className="btn-inner--text">Facebook</span>
                 </Button>
@@ -142,7 +142,7 @@ class Login extends React.Component {
                           .default
                       }
                     /> */}
-                    <i className="fab fa-google" />
+                    <i className="fab fa-google fa-lg" />
                   </span>
                   <span className="btn-inner--text">Google</span>
                 </Button>
