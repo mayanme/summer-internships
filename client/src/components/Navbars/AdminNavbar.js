@@ -62,13 +62,25 @@ const AdminNavbar = (props) => {
         <img
         alt="..."
         src={
-          require("assets/img/theme/mayan-profile.jpg")
+          require("assets/img/theme/mayan-profile-min.jpg")
             .default
         }
       />
       )
     }
   };
+
+  const getProfilePath = () =>
+  {
+    if (props.loginInfo.isStudent)
+    {
+      return "/student/user-profile";
+    }
+    else
+    {
+      return "/org/org-profile";
+    }
+  }
 
   return (
     <>
@@ -110,19 +122,19 @@ const AdminNavbar = (props) => {
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem to="/org/org-profile" tag={Link}>
+                <DropdownItem to={getProfilePath} tag={Link}>
                   <i className="ni ni-single-02" />
                   <span>My profile</span>
                 </DropdownItem>
-                <DropdownItem to="/org/org-profile" tag={Link}>
+                <DropdownItem to={getProfilePath} tag={Link}>
                   <i className="ni ni-settings-gear-65" />
                   <span>Settings</span>
                 </DropdownItem>
-                <DropdownItem to="/org/org-profile" tag={Link}>
+                <DropdownItem to={getProfilePath} tag={Link}>
                   <i className="ni ni-calendar-grid-58" />
                   <span>Activity</span>
                 </DropdownItem>
-                <DropdownItem to="/org/org-profile" tag={Link}>
+                <DropdownItem to={getProfilePath} tag={Link}>
                   <i className="ni ni-support-16" />
                   <span>Support</span>
                 </DropdownItem>
