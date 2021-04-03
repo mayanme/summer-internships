@@ -54,7 +54,7 @@ const AppliedItem = () => {
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/mayan-profile-min.jpg")
+                              require("assets/img/theme/mayan-profile-png-min.png")
                                 .default
                             }
                           />

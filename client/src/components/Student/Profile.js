@@ -50,7 +50,7 @@ const Profile = (props) => {
                         alt="..."
                         className="rounded-circle"
                         src={
-                          require("assets/img/theme/mayan-profile-min.jpg")
+                          require("assets/img/theme/mayan-profile-png-min.png")
                             .default
                         }
                       />
