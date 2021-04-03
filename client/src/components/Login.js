@@ -135,13 +135,14 @@ class Login extends React.Component {
                   onClick={(e) => e.preventDefault()}
                 >
                   <span className="btn-inner--icon">
-                    <img
+                    {/* <img
                       alt="..."
                       src={
                         require("assets/img/icons/common/google.svg")
                           .default
                       }
-                    />
+                    /> */}
+                    <i className="fab fa-google" />
                   </span>
                   <span className="btn-inner--text">Google</span>
                 </Button>
