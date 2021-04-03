@@ -8,8 +8,8 @@ let userSchema = new Schema({
     username: String,
     password: String,
     isLoggedIn: Boolean,
-    photo: String, // change this from string to file somehow
-    // photo:  {data:Buffer , content:String},
+    // photo: String, // change this from string to file somehow
+    photo:  {data:Buffer , content:String},
     degree: String,
     university: String,
     skills: String, // change this from string to list of strings/numbers

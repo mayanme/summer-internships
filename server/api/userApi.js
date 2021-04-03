@@ -1,5 +1,7 @@
 const UserSchema = require('../model/user');
-
+const multer = require('multer');
+const fs = require('fs');
+const upload = multer({dest: 'uploads/'});
 
 module.exports = (app) => {
     app.get('/api/getUser', async function (req, res) {
@@ -17,7 +19,9 @@ module.exports = (app) => {
       res.status(200).json({exists: !!userExist});
       });
 
-    app.post('/api/adduser', async function (req, res) {  
+    // in the future - move upload picture to seperate function
+    // that can be triggered by an "upload" button on the profile
+    app.post('/api/adduser',upload.single('photo'), async function (req, res) {  
       console.log("req.body is: ", req.body);
       const {firstName,lastName,email,username,password,isLoggedIn} = req.body;
       console.log("starting add user, username: ", username);
@@ -29,7 +33,7 @@ module.exports = (app) => {
             username,
             password,
             isLoggedIn, 
-            "photo":"photo", 
+            "photo": {data: fs.readFileSync("assets/img/theme/mayan-profile-png-min.png"), content: "image/png" /* mimetype */ }, 
             "degree":"degree", 
             "university":"university", 
             "skills":"skills", 
