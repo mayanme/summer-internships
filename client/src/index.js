@@ -43,10 +43,10 @@ class App extends React.Component {
       },
       loggedInUser: {
         orgName: "Microsoft",
-        firstName: "Mayan",
+        firstName: "Try",
         lastName: "Menahem",
         username: "maymen",
-        email: "maymen@microsoft.com",
+        email: "mayan@example.com",
         password: "123456",
         photo: null,
         isLoggedIn: false,
@@ -80,13 +80,43 @@ class App extends React.Component {
     })
   }
 
-  setLoggedIn = (isLogged) => {
+  setLoggedIn = (result) => {
+
+    const { data, error } = result;
+    if (error)
+    {
+      console.log("error in setLoggedIn");
+      return;
+    }
+
     this.setState({
       loginInfo: {
         ...this.state.loginInfo,
-        isLoggedIn: isLogged
+        isLoggedIn: true
       }
     })
+  }
+
+  setUserInfo = (result) => {
+    const { data, error } = result;
+    if (error)
+    {
+      console.log("error in setUserInfo");
+      return;
+    }
+
+    if (this.loginInfo.isStudent)
+    {
+      const userInfo = data.info;
+      console.log("setting user info:", userInfo);
+      this.setState({ loggedInUser: userInfo });
+    }
+    else
+    {
+      const orgInfo = data.info;
+      console.log("setting org info:", orgInfo);
+      this.setState({ loggedInUser: orgInfo });
+    }
   }
 
   render() {
@@ -108,7 +138,8 @@ class App extends React.Component {
                                 loggedInUser={this.state.loggedInUser} 
                                 loginInfo={this.state.loginInfo}
                                 setStudentOrOrg={this.setStudentOrOrg}
-                                setLoggedIn={this.setLoggedIn} />} />
+                                setLoggedIn={this.setLoggedIn}
+                                setUserInfo={this.setUserInfo} />} />
         <Route 
           path="/student" 
           render={(props) => <StudentLayout 

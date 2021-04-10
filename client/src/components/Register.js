@@ -16,8 +16,8 @@
 
 */
 import React from "react";
-import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
-import { orgExists, addOrg, logOrgIn } from "components/Actions/orgActions.js";
+import { addUser, logUserIn, getUserInfo } from "components/Actions/userActions.js";
+import { addOrg, logOrgIn, getOrgInfo } from "components/Actions/orgActions.js";
 import { Redirect } from "react-router-dom";
 
 
@@ -50,11 +50,11 @@ class Register extends React.Component {
   }
 
   handleChange(event) {
-    if (event.target.id == "email-id")
+    if (event.target.id === "email-id")
     {
       this.setState({emailValue: event.target.value});
     }
-    else if (event.target.id == "name-id")
+    else if (event.target.id === "name-id")
     {
       this.setState({nameValue: event.target.value});
     }
@@ -71,16 +71,18 @@ class Register extends React.Component {
     if (this.props.loginInfo.isStudent)
     {
       addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
-      success = logUserIn(this.state.emailValue, this.state.passwordValue);
+      logUserIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
+      getUserInfo(this.state.emailValue, this.props.setUserInfo);
     }
     else
     {
       // add Org + log org in
       addOrg(this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
-      success = logOrgIn(this.state.emailValue, this.state.passwordValue);
+      logOrgIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
+      getOrgInfo(this.state.emailValue, this.props.setUserInfo);
     }
     // set logged in
-    this.props.setLoggedIn(true);
+    // this.props.setLoggedIn(true);
   }
 
   render() {

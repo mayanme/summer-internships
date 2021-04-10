@@ -16,9 +16,9 @@
 
 */
 import React from "react";
-import { NavLink as NavLinkRRD, Link, Redirect, Route } from "react-router-dom";
-import { userExists, addUser, logUserIn } from "components/Actions/userActions.js";
-import { orgExists, addOrg, logOrgIn } from "components/Actions/orgActions.js";
+import { NavLink as NavLinkRRD, Redirect } from "react-router-dom";
+import { logUserIn, getUserInfo } from "components/Actions/userActions.js";
+import { logOrgIn, getOrgInfo } from "components/Actions/orgActions.js";
 
 
 
@@ -55,7 +55,7 @@ class Login extends React.Component {
   }
 
   handleChange(event) {
-    if (event.target.id == "email-login-id")
+    if (event.target.id === "email-login-id")
     {
       this.setState({emailValue: event.target.value});
     }
@@ -73,16 +73,18 @@ class Login extends React.Component {
 
     if (this.props.loginInfo.isStudent)
     {
-      success = logUserIn(this.state.emailValue, this.state.passwordValue);
+      logUserIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
+      getUserInfo(this.state.emailValue, this.props.setUserInfo);
     }
     else
     {
-      success = logOrgIn(this.state.emailValue, this.state.passwordValue);
+      logOrgIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
+      getOrgInfo(this.state.emailValue, this.props.setUserInfo);
     }
 
     // set as logged in
     console.log("success:", success);
-    this.props.setLoggedIn(true);
+    // this.props.setLoggedIn(true);
   }
 
   render() {
@@ -182,7 +184,6 @@ class Login extends React.Component {
                       placeholder="Password"
                       onChange={this.handleChange} 
                       value={this.state.passwordValue}
-                      placeholder="Password"
                       type="password"
                       autoComplete="new-password"
                     />

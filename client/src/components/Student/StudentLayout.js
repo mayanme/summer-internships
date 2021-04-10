@@ -38,22 +38,6 @@ const Student = (props) => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/student") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
   const getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -108,14 +92,3 @@ const Student = (props) => {
 };
 
 export default Student;
-
-
-{/* <Sidebar
-{...props}
-routes={routes}
-logo={{
-  innerLink: "/admin/index",
-  imgSrc: require("../assets/img/brand/argon-react.png").default,
-  imgAlt: "...",
-}}
-/> */}

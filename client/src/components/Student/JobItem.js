@@ -17,7 +17,6 @@
 */
 import React from "react";
 import { Button } from "reactstrap";
-import { userExists, addUser } from "components/Actions/userActions.js";
 import { addJobItem } from "components/Actions/jobActions.js";
 
 // reactstrap components

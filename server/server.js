@@ -5,6 +5,7 @@ const JobItemSchema = require('./model/jobItem');
 const UserSchema = require('./model/user');
 const fs = require('fs');
 const path = require('path');
+var cors = require('cors');
 // var cookies = require('cookie-parser');
 
 const config = {
@@ -35,6 +36,9 @@ app.use(express.json());
 // console.log(__dirname);
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use(cookies());
+
+// app.use('./uploads', express.static('uploads'));
+app.use(cors())
 
 // Add backend api routes
 fs.readdirSync(__dirname + '/api').forEach((file) => {

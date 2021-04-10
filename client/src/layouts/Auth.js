@@ -18,7 +18,7 @@
 import React from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row } from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
@@ -26,8 +26,6 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 import Identify from "components/Identify.js";
 import Login from "components/Login.js";
 import Register from "components/Register.js";
-
-import routes from "routes.js";
 
 const Auth = (props) => {
   const mainContent = React.useRef(null);
@@ -44,22 +42,6 @@ const Auth = (props) => {
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
-
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
 
   return (
     <>
@@ -78,21 +60,24 @@ const Auth = (props) => {
                                 loggedInUser={props.loggedInUser} 
                                 loginInfo={props.loginInfo}
                                 setStudentOrOrg={props.setStudentOrOrg}
-                                setLoggedIn={props.setLoggedIn} />} />
+                                setLoggedIn={props.setLoggedIn}
+                                setUserInfo={props.setUserInfo} />} />
               <Route 
                 path="/auth/login" 
                 render={() => <Login 
                                 loggedInUser={props.loggedInUser} 
                                 loginInfo={props.loginInfo}
                                 setStudentOrOrg={props.setStudentOrOrg}
-                                setLoggedIn={props.setLoggedIn} />} />
+                                setLoggedIn={props.setLoggedIn}
+                                setUserInfo={props.setUserInfo} />} />
               <Route 
                 path="/auth/register" 
                 render={() => <Register 
                                 loggedInUser={props.loggedInUser} 
                                 loginInfo={props.loginInfo}
                                 setStudentOrOrg={props.setStudentOrOrg}
-                                setLoggedIn={props.setLoggedIn} />} />
+                                setLoggedIn={props.setLoggedIn}
+                                setUserInfo={props.setUserInfo} />} />
               <Redirect from="*" to="/" />
             </Switch>
           </Row>
@@ -104,19 +89,3 @@ const Auth = (props) => {
 };
 
 export default Auth;
-
-{/* <div className="separator separator-bottom separator-skew zindex-100">
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  preserveAspectRatio="none"
-  version="1.1"
-  viewBox="0 0 2560 100"
-  x="0"
-  y="0"
->
-  <polygon
-    className="fill-default"
-    points="2560 0 2560 100 0 100"
-  />
-</svg>
-</div> */}

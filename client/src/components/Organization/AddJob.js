@@ -16,12 +16,8 @@
 
 */
 import React, { useState } from "react";
-// node.js library that concatenates classes (strings)
-import classnames from "classnames";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
 // reactstrap components
 import {
   Button,
@@ -31,12 +27,6 @@ import {
   FormGroup,
   Form,
   Input,
-  NavItem,
-  NavLink,
-  Nav,
-  Progress,
-  Table,
-  Container,
   Row,
   Col,
 } from "reactstrap";
@@ -45,18 +35,11 @@ import {
 import {
   chartOptions,
   parseOptions,
-  chartExample1,
-  chartExample2,
 } from "views/examples/variables/charts.js";
 
-import Header from "components/Headers/Header.js";
-import AppliedItem from "components/Organization/AppliedItem";
-import JobItem from "components/Organization/JobItem";
 import { addJobItem } from "../Actions/jobActions";
 
 const AddJob = (props) => {
-  const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
 
   const [jobName, setJobName] = useState("Internship Name");
   const [jobDescription, setJobDescription] = useState("Describe the responsibilities and qualifications for the position...");
@@ -66,11 +49,6 @@ const AddJob = (props) => {
     parseOptions(Chart, chartOptions());
   }
 
-  const toggleNavs = (e, index) => {
-    e.preventDefault();
-    setActiveNav(index);
-    setChartExample1Data("data" + index);
-  };
   return (
     <>
     <div className="bg-gradient-default pt-7">
