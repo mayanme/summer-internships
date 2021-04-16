@@ -1,5 +1,5 @@
 
-export function addJobItem(nameP, companyP, descriptionP, durationP)
+export function addJobItem(nameP, companyP, descriptionP, durationP, emailP)
 {
     console.log("sending message to server - add job item: ", nameP);
     // GET request using fetch with set headers
@@ -12,7 +12,8 @@ export function addJobItem(nameP, companyP, descriptionP, durationP)
                 "name": nameP, 
                 "company": companyP,
                 "description": descriptionP, 
-                "duration": durationP })
+                "duration": durationP,
+                "email": emailP })
     }
     )
         .then(response => console.log("res is: ", response.json()))
@@ -20,15 +21,16 @@ export function addJobItem(nameP, companyP, descriptionP, durationP)
         .catch(error => console.log("error in actions -> add job item"));
 }
 
-export function getAllOrgJobs(companyP)
+export function getAllOrgJobs(emailP)
 {
-    console.log("sending message to server - get all org jobs for: ", companyP);
+    console.log("sending message to server - get all org jobs for: ", emailP);
     // GET request using fetch with set headers
     
     const headers = { 'Content-Type': 'application/json'}
-    fetch(`/api/getallorgjobs?company=${companyP}`, { headers })
+    return fetch(`/api/getallorgjobs?email=${emailP}`, { headers })
         .then(response => 
-            console.log("res is: ", response.json()))
+            response.json())
+        .then(responseData => responseData)
         // .then(data => this.setState({ totalReactPackages: data.total }));
         .catch(error => console.log("error in actions -> userexists"));
 }

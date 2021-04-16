@@ -9,17 +9,17 @@ export function orgExists(companyName) {
         .catch(error => console.log("error in actions -> orgexists"));
 }
 
-export function getOrgInfo(email, callback) {
-    console.log("sending message to server - getorginfo");
+export function getOrgInfo(email) {
+    console.log("sending message to server - getorginfo. email:", email);
     // GET request using fetch with set headers
     const headers = { 'Content-Type': 'application/json'}
-    fetch(`/api/getorginfo?email=${email}`, { headers })
+    return fetch(`/api/getorginfo?email=${email}`, { headers })
         .then(response => 
-            callback( { data: response.json().info }))
+            response.json())
+        .then(responseData => responseData)
         // .then(data => this.setState({ totalReactPackages: data.total }));
-        .catch(error => { console.log("error in actions -> get org info")
-                            callback({ error: error }) });
-}
+        .catch(error => console.log("error in actions -> get org info. Error:", error));
+  }
 
 export function addOrg(orgNameP, emailP, usernameP, passwordP)
 {

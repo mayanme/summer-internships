@@ -73,7 +73,7 @@ const Sidebar = (props) => {
     if (props.layoutName == "org")
     {
       return [
-        (<NavItem>
+        (<NavItem key="org1">
           <NavLink
             to={"/org/orgfeed"}
             tag={NavLinkRRD}
@@ -83,7 +83,7 @@ const Sidebar = (props) => {
             Browse applications
           </NavLink>
         </NavItem>),
-        (<NavItem>
+        (<NavItem key="org2">
           <NavLink
             to={"/org/org-profile"}
             tag={NavLinkRRD}
@@ -93,7 +93,7 @@ const Sidebar = (props) => {
             My Profile
           </NavLink>
         </NavItem>),
-        (<NavItem>
+        (<NavItem key="org3">
           <NavLink
             to={"/org/orgjobs"}
             tag={NavLinkRRD}
@@ -108,7 +108,7 @@ const Sidebar = (props) => {
     else 
     {
       return [
-        (<NavItem>
+        (<NavItem key="student1">
           <NavLink
             to={"/student/studentfeed"}
             tag={NavLinkRRD}
@@ -118,7 +118,7 @@ const Sidebar = (props) => {
             Browse Jobs
           </NavLink>
         </NavItem>),
-        (<NavItem>
+        (<NavItem key="student2">
           <NavLink
             to={"/student/user-profile"}
             tag={NavLinkRRD}
@@ -240,7 +240,7 @@ const Sidebar = (props) => {
           {/* Collapse header */}
           <div className="navbar-collapse-header d-md-none">
             <Row>
-              {logo ? (
+              {/* {logo ? (
                 <Col className="collapse-brand" xs="6">
                   {logo.innerLink ? (
                     <Link to={logo.innerLink}>
@@ -252,7 +252,7 @@ const Sidebar = (props) => {
                     </a>
                   )}
                 </Col>
-              ) : null}
+              ) : null} */}
               <Col className="collapse-close" xs="6">
                 <button
                   className="navbar-toggler"
@@ -307,9 +307,9 @@ Sidebar.propTypes = {
     // it will be rendered as simple <a href="...">...</a> tag
     outterLink: PropTypes.string,
     // the image src of the logo
-    imgSrc: PropTypes.string.isRequired,
+    imgSrc: PropTypes.string/*.isRequired*/,
     // the alt for the img
-    imgAlt: PropTypes.string.isRequired,
+    imgAlt: PropTypes.string/*.isRequired*/,
     // layout
     layout: PropTypes.string,
   }),

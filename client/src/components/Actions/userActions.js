@@ -9,16 +9,16 @@ export function userExists() {
         .catch(error => console.log("error in actions -> userexists"));
   }
 
-export function getUserInfo(email, callback) {
-    console.log("sending message to server - getuserinfo");
-    // GET request using fetch with set headers
-    const headers = { 'Content-Type': 'application/json'}
-    fetch(`/api/getuserinfo?email=${email}`, { headers })
-        .then(response => 
-            callback( { data: response.json().info }))
-        // .then(data => this.setState({ totalReactPackages: data.total }));
-        .catch(error => { console.log("error in actions -> get user info")
-                            callback({ error: error }) });
+export function getUserInfo(email) {
+console.log("sending message to server - getuserinfo. email:", email);
+// GET request using fetch with set headers
+const headers = { 'Content-Type': 'application/json'}
+return fetch(`/api/getuserinfo?email=${email}`, { headers })
+    .then(response => 
+        response.json())
+    .then(responseData => responseData)
+    // .then(data => this.setState({ totalReactPackages: data.total }));
+    .catch(error => console.log("error in actions -> get user info. Error:", error));
 }
 
 export function addUser(nameP, lastnameP, emailP, usernameP, passwordP)

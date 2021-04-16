@@ -65,7 +65,8 @@ const AddJob = (props) => {
                 onClick={() => addJobItem(jobName,
                                           props.loggedInUser.orgName,
                                           jobDescription,
-                                          jobDuration)}
+                                          jobDuration,
+                                          props.loggedInUser.email)}
                 size="md"
               >
                 Save

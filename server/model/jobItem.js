@@ -6,6 +6,7 @@ let jobItemSchema = new Schema({
     company: String,
     description: String,
     duration: Number,
+    email: String,
   });
 
 module.exports = mongoose.model('JobItem', jobItemSchema);

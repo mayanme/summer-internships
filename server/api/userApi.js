@@ -36,7 +36,7 @@ module.exports = (app) => {
       console.log("starting get user info, email: ", email);
       const user = await UserSchema.findOne({email:email});
       console.log("got user info, name:", user.firstName);
-      res.json({info: user ? user : null});
+      res.json(user);
       });
 
     // in the future - move upload picture to seperate function

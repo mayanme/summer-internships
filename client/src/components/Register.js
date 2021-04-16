@@ -72,14 +72,14 @@ class Register extends React.Component {
     {
       addUser(this.state.nameValue, this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
       logUserIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
-      getUserInfo(this.state.emailValue, this.props.setUserInfo);
+      getUserInfo(this.state.emailValue).then(res => this.props.setUserInfo(res));
     }
     else
     {
       // add Org + log org in
       addOrg(this.state.nameValue, this.state.emailValue, this.state.emailValue, this.state.passwordValue);
       logOrgIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
-      getOrgInfo(this.state.emailValue, this.props.setUserInfo);
+      getOrgInfo(this.state.emailValue).then(res => this.props.setUserInfo(res));
     }
     // set logged in
     // this.props.setLoggedIn(true);

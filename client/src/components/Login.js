@@ -74,12 +74,12 @@ class Login extends React.Component {
     if (this.props.loginInfo.isStudent)
     {
       logUserIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
-      getUserInfo(this.state.emailValue, this.props.setUserInfo);
+      getUserInfo(this.state.emailValue).then(res => this.props.setUserInfo(res));
     }
     else
     {
       logOrgIn(this.state.emailValue, this.state.passwordValue, this.props.setLoggedIn);
-      getOrgInfo(this.state.emailValue, this.props.setUserInfo);
+      getOrgInfo(this.state.emailValue).then(res => this.props.setUserInfo(res));
     }
 
     // set as logged in

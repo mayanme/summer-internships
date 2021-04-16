@@ -16,23 +16,12 @@
 
 */
 import React from "react";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-} from "views/examples/variables/charts.js";
 
 import JobsList from "components/Organization/JobsList.js";
 import AddJob from "components/Organization/AddJob";
 
 const OrgJobs = (props) => {
-
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
 
   return (
     <>
@@ -42,7 +31,9 @@ const OrgJobs = (props) => {
           loggedInUser={props.loggedInUser} />
         <JobsList
           loginInfo={props.loginInfo} 
-          loggedInUser={props.loggedInUser} />
+          loggedInUser={props.loggedInUser}
+          orgJobsList={props.orgJobsList}
+          setOrgJobs={props.setOrgJobs} />
       </div>
     </>
   );

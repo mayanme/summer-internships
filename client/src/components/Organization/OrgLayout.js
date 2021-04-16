@@ -86,7 +86,9 @@ const Organization = (props) => {
             path="/org/orgjobs" 
             render={() => <OrgJobs 
                             loginInfo={props.loginInfo} 
-                            loggedInUser={props.loggedInUser} />} />
+                            loggedInUser={props.loggedInUser}
+                            orgJobsList={props.orgJobsList}
+                            setOrgJobs={props.setOrgJobs} />} />
           <Redirect from="*" to="/" />
         </Switch>
         <Container fluid>

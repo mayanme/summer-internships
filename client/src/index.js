@@ -46,7 +46,7 @@ class App extends React.Component {
         firstName: "Try",
         lastName: "Menahem",
         username: "maymen",
-        email: "mayan@example.com",
+        email: "org@example.com",
         password: "123456",
         photo: null,
         isLoggedIn: false,
@@ -57,7 +57,8 @@ class App extends React.Component {
         country: "",
         aboutMe: "",
         resume: ""
-      }
+      },
+      orgJobsList: []
     };
   }
 
@@ -97,26 +98,24 @@ class App extends React.Component {
     })
   }
 
-  setUserInfo = (result) => {
-    const { data, error } = result;
-    if (error)
+  setUserInfo = (user) => {
+    if (this.state.loginInfo.isStudent)
     {
-      console.log("error in setUserInfo");
-      return;
-    }
-
-    if (this.loginInfo.isStudent)
-    {
-      const userInfo = data.info;
+      const userInfo = user;
       console.log("setting user info:", userInfo);
       this.setState({ loggedInUser: userInfo });
     }
     else
     {
-      const orgInfo = data.info;
+      const orgInfo = user;
       console.log("setting org info:", orgInfo);
       this.setState({ loggedInUser: orgInfo });
     }
+  }
+
+  setOrgJobs = (jobs) => {
+    console.log("setting org jobs:", jobs);
+    this.setState({ orgJobsList: jobs });
   }
 
   render() {
@@ -153,7 +152,9 @@ class App extends React.Component {
                                 {...props} 
                                 layoutName="org" 
                                 loggedInUser={this.state.loggedInUser} 
-                                loginInfo={this.state.loginInfo} />} />
+                                loginInfo={this.state.loginInfo}
+                                orgJobsList={this.state.orgJobsList}
+                                setOrgJobs={this.setOrgJobs} />} />
         <Redirect from="/" to="/auth/identify"/>
       </Switch>
     </BrowserRouter>

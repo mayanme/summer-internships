@@ -16,8 +16,8 @@ module.exports = (app) => {
     app.get('/api/getorginfo', async function (req, res) {  
       const {email} = req.query;
       console.log("starting get org info, email: ", email);
-      const org = await OrgSchema.findOne({email:email});
-      res.json({info: org});
+      const user = await OrgSchema.findOne({email:email});
+      res.json(user);
       });
 
     app.post('/api/addorg', async function (req, res) {  
