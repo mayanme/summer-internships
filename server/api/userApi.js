@@ -1,7 +1,7 @@
 const UserSchema = require('../model/user');
-const multer = require('multer');
-const fs = require('fs');
-const upload = multer({dest: '../uploads/'});
+// const multer = require('multer');
+// const fs = require('fs');
+// const upload = multer({dest: '../uploads/'});
 
 // var storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
@@ -93,38 +93,38 @@ module.exports = (app) => {
         res.json({success: true});
         });
       
-      app.post('/api/uploadphoto',upload.single('picture'), async function(req, res) {
+      // app.post('/api/uploadphoto',upload.single('picture'), async function(req, res) {
         
-        console.log("userApi.uploadphoto - starting");
+      //   console.log("userApi.uploadphoto - starting");
 
-        // upload(req, res, function (err) {
-        //         if (err instanceof multer.MulterError) {
-        //             return res.status(500).json(err)
-        //         } else if (err) {
-        //             return res.status(500).json(err)
-        //         }
-        //   return res.status(200).send(req.file)
+      //   // upload(req, res, function (err) {
+      //   //         if (err instanceof multer.MulterError) {
+      //   //             return res.status(500).json(err)
+      //   //         } else if (err) {
+      //   //             return res.status(500).json(err)
+      //   //         }
+      //   //   return res.status(200).send(req.file)
     
-        // })
+      //   // })
         
-        const { email, picture } = req.body;
-        console.log("server/api/uploadphoto - email and picture", email, picture);
-        const user = await UserSchema.findOne({email: email});
-        if (!user){
-          console.log("upload photo, user not found");
-        }
-        else
-        {
-          try {
-            user.photo = req.file ? {data: fs.readFileSync(req.file.path),content:req.file.mimetype}: null
-            await user.save();
-            res.json({success: true});
-          }
-          catch(e) {
-            res.json({success: false});
-          }
-        }
+      //   const { email, picture } = req.body;
+      //   console.log("server/api/uploadphoto - email and picture", email, picture);
+      //   const user = await UserSchema.findOne({email: email});
+      //   if (!user){
+      //     console.log("upload photo, user not found");
+      //   }
+      //   else
+      //   {
+      //     try {
+      //       user.photo = req.file ? {data: fs.readFileSync(req.file.path),content:req.file.mimetype}: null
+      //       await user.save();
+      //       res.json({success: true});
+      //     }
+      //     catch(e) {
+      //       res.json({success: false});
+      //     }
+      //   }
 
-      });
+      // });
 
 }
