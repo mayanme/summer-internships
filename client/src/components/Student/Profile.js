@@ -86,7 +86,7 @@ class Profile extends React.Component {
                           alt="..."
                           className="rounded-circle"
                           src={
-                            require("assets/img/theme/mayan-profile-png-min.png")
+                            require("assets/img/theme/mayan-profile-png-min.PNG")
                               .default
                           }
                         />
