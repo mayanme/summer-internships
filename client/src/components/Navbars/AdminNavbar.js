@@ -62,7 +62,7 @@ const AdminNavbar = (props) => {
         <img
         alt="..."
         src={
-          require("assets/img/theme/mayan-profile-png-min.png")
+          require("assets/img/theme/mayanprofilepngmin.png")
             .default
         }
       />
