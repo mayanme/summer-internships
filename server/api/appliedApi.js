@@ -1,6 +1,4 @@
 const { Schema } = require('mongoose');
-const JobItemSchema = require('../model/jobItem');
-const UserSchema = require('../model/user');
 const AppliedItemSchema = require('../model/appliedItem');
 
 
