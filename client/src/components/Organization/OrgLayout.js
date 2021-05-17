@@ -81,7 +81,9 @@ const Organization = (props) => {
             path="/org/orgfeed" 
             render={() => <OrgFeed 
                             loginInfo={props.loginInfo} 
-                            loggedInUser={props.loggedInUser} />} />
+                            loggedInUser={props.loggedInUser}
+                            studentsAppliedList={props.studentsAppliedList}
+                            setStudentsAppliedList={props.setStudentsAppliedList} />} />
           <Route 
             path="/org/orgjobs" 
             render={() => <OrgJobs 

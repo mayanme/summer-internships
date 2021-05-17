@@ -45,31 +45,31 @@ module.exports = (app) => {
       }
       });
 
-      app.post('/api/orglogin', async function (req, res) {  
-        console.log("req.body is: ", req.body);
-        const {email,password} = req.body;
-        
-        // in the future need to add password check as well!
+    app.post('/api/orglogin', async function (req, res) {  
+      console.log("req.body is: ", req.body);
+      const {email,password} = req.body;
+      
+      // in the future need to add password check as well!
 
-        console.log("starting login org, email: ", email);
-        const org = await OrgSchema.findOne({email:email});
-        if (!org)
-        {
-          console.log("server/api/orglogin: Org not found");
+      console.log("starting login org, email: ", email);
+      const org = await OrgSchema.findOne({email:email});
+      if (!org)
+      {
+        console.log("server/api/orglogin: Org not found");
+      }
+      else
+      {
+        try {
+          org.isLoggedIn = true;
+          await org.save()
         }
-        else
-        {
-          try {
-            org.isLoggedIn = true;
-            await org.save()
-          }
-          catch {
-            res.json({success: false}); 
-            return;
-          }
+        catch {
+          res.json({success: false}); 
+          return;
         }
-        res.json({success: true});
-        });
+      }
+      res.json({success: true});
+      });
 
       // app.post('/api/uploadorgphoto',upload.single('picture'), async function(req, res) {
       

@@ -127,7 +127,17 @@ const Sidebar = (props) => {
             <i className="ni ni-hat-3 text-primary mr-2" />
             My Profile
           </NavLink>
-        </NavItem>)
+        </NavItem>),
+        (<NavItem key="student3">
+        <NavLink
+          to={"/student/applications"}
+          tag={NavLinkRRD}
+          activeClassName="active"
+        >
+          <i className="ni ni-hat-3 text-primary mr-2" />
+          My Applications
+        </NavLink>
+      </NavItem>)
         ];
     }
   };

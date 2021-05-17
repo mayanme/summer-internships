@@ -70,28 +70,28 @@ module.exports = (app) => {
       }
       });
 
-      app.post('/api/login', async function (req, res) {  
-        console.log("login: req.body is: ", req.body);
-        const {email,password} = req.body;
-        console.log("starting login user, email: ", email);
-        const user = await UserSchema.findOne({email:email});
-        if (!user)
-        {
-          console.log("server/api/login: User not found");
+    app.post('/api/login', async function (req, res) {  
+      console.log("login: req.body is: ", req.body);
+      const {email,password} = req.body;
+      console.log("starting login user, email: ", email);
+      const user = await UserSchema.findOne({email:email});
+      if (!user)
+      {
+        console.log("server/api/login: User not found");
+      }
+      else
+      {
+        try {
+          user.isLoggedIn = true;
+          await user.save()
         }
-        else
-        {
-          try {
-            user.isLoggedIn = true;
-            await user.save()
-          }
-          catch {
-            res.json({success: false}); 
-            return;
-          }
+        catch {
+          res.json({success: false}); 
+          return;
         }
-        res.json({success: true});
-        });
+      }
+      res.json({success: true});
+      });
       
       // app.post('/api/uploadphoto',upload.single('picture'), async function(req, res) {
         

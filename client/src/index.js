@@ -46,7 +46,7 @@ class App extends React.Component {
         firstName: "Try",
         lastName: "Menahem",
         username: "maymen",
-        email: "org@example.com",
+        email: "fail@example.com",
         password: "123456",
         photo: null,
         isLoggedIn: false,
@@ -58,7 +58,9 @@ class App extends React.Component {
         aboutMe: "",
         resume: ""
       },
-      orgJobsList: []
+      orgJobsList: [],
+      studentAvailableJobs: [],
+      studentsAppliedList: []
     };
   }
 
@@ -118,6 +120,16 @@ class App extends React.Component {
     this.setState({ orgJobsList: jobs });
   }
 
+  setStudentAvailableJobs = (jobs) => {
+    console.log("setting student available jobs:", jobs);
+    this.setState({ studentAvailableJobs: jobs });
+  }
+
+  setStudentsAppliedList = (applied) => {
+    console.log("setting student applied list:", applied);
+    this.setState({ studentsAppliedList: applied });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -145,7 +157,9 @@ class App extends React.Component {
                                 {...props} 
                                 layoutName="student" 
                                 loggedInUser={this.state.loggedInUser} 
-                                loginInfo={this.state.loginInfo} />} />
+                                loginInfo={this.state.loginInfo}
+                                studentAvailableJobs={this.state.studentAvailableJobs}
+                                setStudentAvailableJobs={this.setStudentAvailableJobs} />} />
         <Route 
           path="/org" 
           render={(props) => <OrgLayout 
@@ -154,7 +168,9 @@ class App extends React.Component {
                                 loggedInUser={this.state.loggedInUser} 
                                 loginInfo={this.state.loginInfo}
                                 orgJobsList={this.state.orgJobsList}
-                                setOrgJobs={this.setOrgJobs} />} />
+                                setOrgJobs={this.setOrgJobs}
+                                studentsAppliedList={this.state.studentsAppliedList}
+                                setStudentsAppliedList={this.setStudentsAppliedList} />} />
         <Redirect from="/" to="/auth/identify"/>
       </Switch>
     </BrowserRouter>

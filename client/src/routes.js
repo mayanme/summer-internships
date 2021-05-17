@@ -18,6 +18,7 @@
 import OrgFeed from "components/Organization/OrgFeed.js";
 import OrgJobs from "components/Organization/OrgJobs.js";
 import OrgProfile from "components/Organization/OrgProfile.js";
+import StudentApplications from "components/Student/StudentApplications";
 import StudentFeed from "components/Student/StudentFeed.js";
 import Profile from "components/Student/Profile.js";
 import Register from "components/Register.js";
@@ -25,6 +26,13 @@ import Login from "components/Login.js";
 import Identify from "components/Identify.js";
 
 var routes = [
+  {
+    path: "/applications",
+    name: "Browse Jobs",
+    icon: "ni ni-tv-2 text-primary",
+    component: StudentApplications,
+    layout: "/student",
+  },
   {
     path: "/studentfeed",
     name: "Browse Jobs",

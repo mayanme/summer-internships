@@ -63,14 +63,10 @@ class AppliedItem extends React.Component {
                             tag="h1"
                             className="text-uppercase text-muted mb-0"
                           >
-                            {this.state.userInfo.firstName} {this.state.userInfo.lastName} 
+                            {this.props.jobName}
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
-                            {this.state.userInfo.degree}, {this.state.userInfo.university}
-                          </span>
-                          <br/>
-                          <span className="h3 font-weight-bold mb-0">
-                            {this.state.userInfo.email}
+                            Internship number: {this.props.jobNumber}
                           </span>
                         </div>
                         <Col className="col-auto">
@@ -81,7 +77,7 @@ class AppliedItem extends React.Component {
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/mayanprofilepngmin.png")
+                                require("assets/img/theme/microsoft2.png")
                                   .default
                               }
                             />
@@ -90,17 +86,7 @@ class AppliedItem extends React.Component {
                       </Row>
                       <Row>
                         <span className="h4 pb-3 pt-3 pl-3 mb-0 w-75">
-                          {this.state.userInfo.aboutMe}
-                        </span>
-                      </Row>
-                      <Row>
-                        <span className="h4 pb-0 pt-3 pl-3 mb-0 w-75">
-                          Internship name: {this.props.jobName}
-                        </span>
-                      </Row>
-                      <Row>
-                        <span className="h4 pb-2 pt-1 pl-3 mb-0 w-75">
-                          Internship number: {this.props.jobNumber}
+                          {this.props.description}
                         </span>
                       </Row>
                       <Row>

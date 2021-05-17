@@ -24,6 +24,7 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import StudentFeed from "components/Student/StudentFeed.js";
+import StudentApplications from "components/Student/StudentApplications";
 import Profile from "components/Student/Profile.js";
 
 import routes from "routes.js";
@@ -79,6 +80,13 @@ const Student = (props) => {
           <Route 
             path="/student/studentfeed" 
             render={() => <StudentFeed 
+                            loginInfo={props.loginInfo} 
+                            loggedInUser={props.loggedInUser}
+                            studentAvailableJobs={props.studentAvailableJobs}
+                            setStudentAvailableJobs={props.setStudentAvailableJobs} />} />
+          <Route 
+            path="/student/applications" 
+            render={() => <StudentApplications
                             loginInfo={props.loginInfo} 
                             loggedInUser={props.loggedInUser} />} />
           <Redirect from="*" to="/" />

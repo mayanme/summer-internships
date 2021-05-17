@@ -7,6 +7,8 @@ let jobItemSchema = new Schema({
     description: String,
     duration: Number,
     email: String,
+    jobNumber: Number,
+    appliedList: [ {type: Schema.Types.ObjectId, ref: 'User'} ]
   });
 
 module.exports = mongoose.model('JobItem', jobItemSchema);

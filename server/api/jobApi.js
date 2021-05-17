@@ -1,10 +1,13 @@
+const { Schema } = require('mongoose');
 const JobItemSchema = require('../model/jobItem');
+const UserSchema = require('../model/user');
+
 
 
 module.exports = (app) => {
     app.get('/api/getallorgjobs', async function (req, res) {  
         const {email} = req.query;
-        console.log("starting get all jobs, email: ", email);
+        console.log("starting get all org jobs, email: ", email);
         const allJobs = await JobItemSchema.find({email:email});
         res.json(allJobs);
         });
@@ -27,5 +30,11 @@ module.exports = (app) => {
             res.json({success: false});
         }
         });
-
+    
+    app.get('/api/getallstudentavailablejobs', async function (req, res) {  
+        const {email} = req.query;
+        console.log("starting get all student available jobs, email: ", email);
+        const allJobs = await JobItemSchema.find();
+        res.json(allJobs);
+        });
 }
