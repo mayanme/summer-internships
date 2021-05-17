@@ -1,5 +1,5 @@
 
-export function addJobItem(nameP, companyP, descriptionP, durationP, emailP)
+export function addJobItem(nameP, companyP, descriptionP, durationP, jobNumberP, emailP)
 {
     console.log("sending message to server - add job item: ", nameP);
     // GET request using fetch with set headers
@@ -13,6 +13,7 @@ export function addJobItem(nameP, companyP, descriptionP, durationP, emailP)
                 "company": companyP,
                 "description": descriptionP, 
                 "duration": durationP,
+                "jobNumber": jobNumberP,
                 "email": emailP })
     }
     )

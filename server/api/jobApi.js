@@ -14,7 +14,7 @@ module.exports = (app) => {
 
     app.post('/api/addjobitem', async function (req, res) {  
         console.log("req.body is: ", req.body);
-        const {name, company, description, duration, email} = req.body;
+        const {name, company, description, duration, jobNumber, email} = req.body;
         console.log("starting add job item, name: ", name);
         try {
           const addJobItem = new JobItemSchema({
@@ -22,7 +22,8 @@ module.exports = (app) => {
               company,
               description,
               duration,
-              email }
+              email,
+              jobNumber }
               )
           await addJobItem.save();
           res.json({success: true});
