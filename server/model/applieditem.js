@@ -10,4 +10,4 @@ let appliedItemSchema = new Schema({
     useremail: String,
   });
 
-module.exports = mongoose.model('appliedItem', appliedItemSchema);
+module.exports = mongoose.model('AppliedItem', appliedItemSchema);
