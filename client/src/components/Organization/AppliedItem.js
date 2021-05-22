@@ -81,7 +81,7 @@ class AppliedItem extends React.Component {
                             <img
                               alt="..."
                               src={
-                                require("assets/img/theme/mayanprofilepngmin.png")
+                                require("assets/img/theme/team-4-800x800.jpg")
                                   .default
                               }
                             />

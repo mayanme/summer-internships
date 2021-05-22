@@ -210,7 +210,7 @@ const Sidebar = (props) => {
                   <img
                     alt="..."
                     src={
-                      require("assets/img/theme/mayanprofilepngmin.png")
+                      require("assets/img/theme/team-4-800x800.jpg")
                         .default
                     }
                   />
