@@ -35,7 +35,7 @@ const Login = () => {
                   href="#pablo"
                   target="_blank"
                 >
-                  Summer Internships
+                  Tyro
                 </a>
               </div>
             </Col>

@@ -33,7 +33,7 @@ import {
 } from "reactstrap";
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
-import { uploadUserPhoto } from "components/Actions/userActions.js";
+import { uploadUserPhoto, updateUserInfo } from "components/Actions/userActions.js";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -41,10 +41,24 @@ class Profile extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
+      userName: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      degree: '',
+      university: '',
+      skills: [],
+      city: '',
+      country: '',
+      aboutMe: '',
       files: [],
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Resume change
   onChange(e) {
     var files = e.target.files;
     console.log(files);
@@ -53,20 +67,95 @@ class Profile extends React.Component {
     this.setState({ files: [...this.state.files, ...filesArr] });
   }
 
+  // Resume submit
   onSubmit(e) {
     console.log("submitting file", this.state.files[0].name);
-    
-    // console.log(data);
-
-  //   axios.post("/api/uploadphoto", data, { 
-  //     // receive two    parameter endpoint url ,form data
-  //   })
-  //   .then(res => { // then print response status
-  //     console.log(res.statusText)
-  //  })
-    // console.log("Profile.js - form data - ", data);
     uploadUserPhoto(this.props.loggedInUser.email, this.state.files[0]);
 
+  }
+
+  // any input change
+  handleChange(event) {
+    switch (event.target.id)
+    {
+      // case "input-username":
+      //   this.setState({userName: event.target.value});
+      //   break;
+
+      // case "input-email":
+      //   this.setState({email: event.target.value});
+      //   break;
+
+      case "input-first-name":
+        this.setState({firstName: event.target.value});
+        break;
+
+      case "input-last-name":
+        this.setState({lastName: event.target.value});
+        break;
+
+      case "input-degree":
+        this.setState({degree: event.target.value});
+        break;
+
+      case "input-university":
+        this.setState({university: event.target.value});
+        break;
+
+      case "input-city":
+        this.setState({city: event.target.value});
+        break;
+      
+      case "input-country":
+        this.setState({country: event.target.value});
+        break;
+      
+      case "input-about-me":
+        this.setState({aboutMe: event.target.value});
+        break;
+
+      case "input-skills":
+        this.setState({skills: event.target.value});
+        break;
+      
+      default:
+        //
+    }
+  }
+
+  // input submit
+  handleSubmit(event) {
+    // alert('An email was submitted: ' + this.state.emailValue);
+    console.log("Profile.js: save user profile info");
+    this.setState({email: this.props.loggedInUser.email});
+    // send request to save all user profile info
+    updateUserInfo(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.email,
+      this.state.degree, 
+      this.state.university, 
+      this.state.city,
+      this.state.country, 
+      this.state.skills, 
+      this.state.aboutMe);
+  }
+
+  componentDidMount() {
+    // this is a preparation for maybe taking all the fields from this.state instead of this.props when rendering
+    // so that everytime the user updates the profile info it will automatically render the changes
+    // not sure if this will work.. need to check
+    this.setState( { 
+      ...this.state,
+      firstName: this.props.loggedInUser.firstName,
+      lastName: this.props.loggedInUser.lastName,
+      degree: this.props.loggedInUser.degree,
+      university: this.props.loggedInUser.university,
+      city: this.props.loggedInUser.city,
+      country: this.props.loggedInUser.country,
+      aboutMe: this.props.loggedInUser.aboutMe,
+      skills: this.props.loggedInUser.skills
+     } );
   }
 
   render() {
@@ -125,26 +214,24 @@ class Profile extends React.Component {
                   </Row>
                   <div className="text-center">
                     <h3>
-                      Mayan Menahem
-                      <span className="font-weight-light">, 26</span>
+                      {this.props.loggedInUser.firstName} {this.props.loggedInUser.lastName}
+                      {/* <span className="font-weight-light">, 26</span> */}
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      Givatayim, Israel
+                      {this.props.loggedInUser.city}, {this.props.loggedInUser.country}
                     </div>
                     <div className="h5 mt-4">
                       <i className="ni business_briefcase-24 mr-2" />
-                      Computer Science
+                      {this.props.loggedInUser.degree}
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
-                      Ben Gurion University of the Negev
+                      {this.props.loggedInUser.university}
                     </div>
                     <hr className="my-4" />
                     <p>
-                    Highly motivated Computer Science student at Ben-Gurion University of the Negev.
-                    Skilled in Java, Linux, Object-Oriented Programming (OOP), C, and Python.
-                    Looking for internships as a Software Developer.
+                    {this.props.loggedInUser.aboutMe}
                     </p>
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       Show more
@@ -159,6 +246,15 @@ class Profile extends React.Component {
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">My account</h3>
+                    </Col>
+                    <Col>
+                    <Button
+                      color="primary"
+                      onClick={this.handleSubmit}
+                      size="md"
+                    >
+                      Save
+                    </Button>
                     </Col>
                     <Col className="text-right" xs="4">
                       {/* <Button
@@ -178,7 +274,7 @@ class Profile extends React.Component {
                       User information
                     </h6>
                     <div className="pl-lg-4">
-                      <Row>
+                      {/* <Row>
                         <Col lg="6">
                           <FormGroup>
                             <label
@@ -193,6 +289,7 @@ class Profile extends React.Component {
                               id="input-username"
                               placeholder="Username"
                               type="text"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -209,10 +306,11 @@ class Profile extends React.Component {
                               id="input-email"
                               placeholder="mayan@example.com"
                               type="email"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
-                      </Row>
+                      </Row> */}
                       <Row>
                         <Col lg="6">
                           <FormGroup>
@@ -228,6 +326,7 @@ class Profile extends React.Component {
                               id="input-first-name"
                               placeholder="First name"
                               type="text"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -245,6 +344,7 @@ class Profile extends React.Component {
                               id="input-last-name"
                               placeholder="Last name"
                               type="text"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -265,6 +365,52 @@ class Profile extends React.Component {
                             />
                           </FormGroup>
                         </Col> */}
+                      </Row>
+                    </div>
+                    <hr className="my-4" />
+                     {/* Education */}
+                     <h6 className="heading-small text-muted mb-4">
+                     Education
+                    </h6>
+                    <div className="pl-lg-4">
+  
+                      <Row>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-city"
+                            >
+                              Degree
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              defaultValue=""
+                              id="input-degree"
+                              placeholder=""
+                              type="text"
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col lg="4">
+                          <FormGroup>
+                            <label
+                              className="form-control-label"
+                              htmlFor="input-country"
+                            >
+                              University
+                            </label>
+                            <Input
+                              className="form-control-alternative"
+                              defaultValue=""
+                              id="input-university"
+                              placeholder=""
+                              type="text"
+                              onChange={this.handleChange}
+                            />
+                          </FormGroup>
+                        </Col>
                       </Row>
                     </div>
                     <hr className="my-4" />
@@ -289,6 +435,7 @@ class Profile extends React.Component {
                               id="input-city"
                               placeholder="City"
                               type="text"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -306,6 +453,7 @@ class Profile extends React.Component {
                               id="input-country"
                               placeholder="Country"
                               type="text"
+                              onChange={this.handleChange}
                             />
                           </FormGroup>
                         </Col>
@@ -323,6 +471,8 @@ class Profile extends React.Component {
                           rows="4"
                           defaultValue="A few words about you ..."
                           type="textarea"
+                          id="input-about-me"
+                          onChange={this.handleChange}
                         />
                       </FormGroup>
                     </div>
@@ -338,6 +488,8 @@ class Profile extends React.Component {
                           rows="4"
                           defaultValue="List your skills ..."
                           type="textarea"
+                          id="input-skills"
+                          onChange={this.handleChange}
                         />
                       </FormGroup>
                     </div>
@@ -350,6 +502,7 @@ class Profile extends React.Component {
                         <Input
                           name="file"
                           type="file"
+                          id="input-resume"
                           onChange={this.onChange}
                         />
                       </FormGroup>

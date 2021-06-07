@@ -34,7 +34,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Summer Internships
+              Tyro
             </a>
           </div>
         </Col>

@@ -85,13 +85,13 @@ const UserHeader = (props) => {
             <Col lg="7" md="10">
               {getNameToDisplay()}
               {getIntroToDisplay()}
-              <Button
+              {/* <Button
                 color="info"
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
                 Edit profile
-              </Button>
+              </Button> */}
             </Col>
           </Row>
         </Container>

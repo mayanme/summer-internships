@@ -65,6 +65,36 @@ export function logOrgIn(emailP, passwordP, callback)
                     callback({ error: error }) });
 }
 
+
+export function updateOrgInfo(orgName, email, industry, city, country, aboutUs, callback)
+{
+    console.log("sending message to server - update org info: ", orgName);
+    // GET request using fetch with set headers
+    // if (emailP == null || passwordP == null)
+    // {
+    //     return;
+    // }
+
+    fetch('/api/updateorginfo', 
+    {
+        method: "POST", 
+        headers: { 'Content-Type': 'application/json'} , 
+        body: JSON.stringify({
+                "orgName": orgName, 
+                "email": email, 
+                "industry": industry,
+                "city": city,
+                "country": country,
+                "aboutUs": aboutUs})
+    }
+    )
+        .then(response => callback({ data: true }))
+        // .then(data => this.setState({ totalReactPackages: data.total }));
+        .catch(error => { console.log("error in actions -> update org info")
+                        callback({ error: error }) });
+}
+
+
 export function uploadOrgPhoto(email, picture)
 {
     console.log("sending photo to server - upload org photo: ", picture);

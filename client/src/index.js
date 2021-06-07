@@ -43,7 +43,7 @@ class App extends React.Component {
       },
       loggedInUser: {
         orgName: "Microsoft",
-        firstName: "Try",
+        firstName: "Mayan",
         lastName: "Menahem",
         username: "maymen",
         email: "fail@example.com",
@@ -55,7 +55,9 @@ class App extends React.Component {
         skills: [],
         city: "",
         country: "",
+        industry: "",
         aboutMe: "",
+        aboutUs: "",
         resume: ""
       },
       orgJobsList: [],

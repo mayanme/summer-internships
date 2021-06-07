@@ -67,6 +67,37 @@ export function logUserIn(emailP, passwordP, callback)
                         callback({ error: error }) });
 }
 
+export function updateUserInfo(firstName, lastName, email, degree, university, city, country, skills, aboutMe, callback)
+{
+    console.log("sending message to server - update user info: ", firstName, lastName);
+    // GET request using fetch with set headers
+    // if (emailP == null || passwordP == null)
+    // {
+    //     return;
+    // }
+
+    fetch('/api/updateuserinfo', 
+    {
+        method: "POST", 
+        headers: { 'Content-Type': 'application/json'} , 
+        body: JSON.stringify({
+                "firstName": firstName, 
+                "lastName": lastName,
+                "email": email,
+                "degree": degree,
+                "university": university,
+                "city": city,
+                "country": country,
+                "skills": skills,
+                "aboutMe": aboutMe})
+    }
+    )
+        .then(response => callback({ data: true }))
+        // .then(data => this.setState({ totalReactPackages: data.total }));
+        .catch(error => { console.log("error in actions -> update user info")
+                        callback({ error: error }) });
+}
+
 export function uploadUserPhoto(email, picture)
 {
     console.log("sending photo to server - upload user photo: ", picture);

@@ -71,6 +71,34 @@ module.exports = (app) => {
       res.json({success: true});
       });
 
+      
+      app.post('/api/updateorginfo', async function (req, res) {  
+        console.log("updateorginfo: req.body is: ", req.body);
+        const {orgName, email, industry, city, country, aboutUs} = req.body;
+        console.log("starting update org info, org name: ", orgName);
+        const org = await OrgSchema.findOne({email:email});
+        if (!org)
+        {
+          console.log("server/api/updateorginfo: Org not found");
+        }
+        else
+        {
+          try {
+            org.orgName = orgName;
+            org.industry = industry;
+            org.city = city;
+            org.country = country;
+            org.aboutUs = aboutUs;
+            await org.save()
+          }
+          catch {
+            res.json({success: false}); 
+            return;
+          }
+        }
+        res.json({success: true});
+        });
+
       // app.post('/api/uploadorgphoto',upload.single('picture'), async function(req, res) {
       
       //   console.log("orgApi.uploadphoto - starting");

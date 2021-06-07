@@ -92,6 +92,36 @@ module.exports = (app) => {
       }
       res.json({success: true});
       });
+
+      app.post('/api/updateuserinfo', async function (req, res) {  
+        console.log("login: req.body is: ", req.body);
+        const {firstName, lastName, email, degree, university, city, country, skills, aboutMe} = req.body;
+        console.log("starting update user info, user email: ", email);
+        const user = await UserSchema.findOne({email:email});
+        if (!user)
+        {
+          console.log("server/api/updateuserinfo: User not found");
+        }
+        else
+        {
+          try {
+            user.firstName = firstName;
+            user.lastName = lastName;
+            user.degree = degree;
+            user.university = university;
+            user.city = city;
+            user.country = country;
+            user.skills = skills;
+            user.aboutMe = aboutMe;
+            await user.save()
+          }
+          catch {
+            res.json({success: false}); 
+            return;
+          }
+        }
+        res.json({success: true});
+        });
       
       // app.post('/api/uploadphoto',upload.single('picture'), async function(req, res) {
         

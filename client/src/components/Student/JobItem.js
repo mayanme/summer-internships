@@ -56,7 +56,7 @@ class JobItem extends React.Component {
                           <img
                             alt="..."
                             src={
-                              require("assets/img/theme/microsoft2.png")
+                              require("assets/img/theme/org-profile-placeholder.png")
                                 .default
                             }
                           />
