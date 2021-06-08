@@ -75,7 +75,7 @@ const Admin = (props) => {
         //   imgSrc: require("../assets/img/brand/argon-react.png").default,
         //   imgAlt: "...",
         // }
-        <h1 className="text-primary">Our Logo</h1>
+        <h1 className="text-primary">Tyro</h1>
       }
         layout="admin"
       />

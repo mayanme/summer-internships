@@ -182,7 +182,7 @@ const Sidebar = (props) => {
           <Link
             to="/"
           >
-            <h1 className="text-default">Our Logo</h1>
+            <h1 className="text-default">Tyro</h1>
           </Link>
           </NavbarBrand>
         ) : null}

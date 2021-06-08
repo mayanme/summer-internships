@@ -33,7 +33,7 @@ const AdminNavbar = () => {
       <Navbar className="navbar-top navbar-horizontal navbar-dark bg-default" expand="md">
         <Container className="px-4">
           <NavbarBrand to="/" tag={Link}>
-            <h2 className="text-white">Our Logo</h2>
+            <h2 className="text-white">Tyro</h2>
           </NavbarBrand>
           <button className="navbar-toggler" id="navbar-collapse-main">
             <span className="navbar-toggler-icon" />
@@ -50,7 +50,7 @@ const AdminNavbar = () => {
                           .default
                       }
                     /> */}
-                    <h1 className="text-primary">Our Logo</h1>
+                    <h1 className="text-primary">Tyro</h1>
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
